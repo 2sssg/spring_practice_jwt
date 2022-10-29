@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import me.practice.spring_practice_jwt.dto.user.AccountJoinReqDto;
 import me.practice.spring_practice_jwt.model.Account;
 import me.practice.spring_practice_jwt.services.AccountService;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,9 +47,9 @@ public class IndexController {
 		return "manager";
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "login";
+	@GetMapping("/login-form")
+	public String loginForm() {
+		return "login-form";
 	}
 
 	@GetMapping("/join")
@@ -55,9 +58,22 @@ public class IndexController {
 	}
 
 	@PostMapping("/create-account")
-	public @ResponseBody String userCreate(AccountJoinReqDto userJoinReqDto) {
+	public String userCreate(AccountJoinReqDto userJoinReqDto) {
 		log.info(userJoinReqDto.toString());
-//		return userService.createUser(userJoinReqDto).toString();
-		return "redirect:/login";
+		userService.createAccount(userJoinReqDto);
+		return "redirect:/login-form";
 	}
+
+	@GetMapping("/info")
+	@Secured("ROLE_ADMIN")
+	public @ResponseBody String info() {
+		return "개인정보";
+	}
+
+	@GetMapping("/data")
+	@PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+	public @ResponseBody String data() {
+		return "데이터 정보";
+	}
+
 }

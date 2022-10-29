@@ -15,6 +15,7 @@ spring:
     deserialization:
       fail-on-unknown-properties : true
 
+
 logging:
   level:
     org:
@@ -22,3 +23,9 @@ logging:
       hibernate.SQL: DEBUG
     type.descriptor.sql.BasicBinder: TRACE
 
+my-app:
+  password: 123
+  admin-username: admin
+  manager-username: manager
+  user-username: user
+  email: temp@temp.temp

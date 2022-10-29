@@ -19,12 +19,14 @@ public class AccountService {
 
 	private final PasswordEncoder passwordEncoder;
 
-	public Account createUser(AccountJoinReqDto userJoinReqDto) {
+	public Account createAccount(AccountJoinReqDto userJoinReqDto) {
 		Account user = modelMapper.map(userJoinReqDto.encodePassword(passwordEncoder), Account.class);
 		user.setRole(Role.USER);
 		return userRepository.save(user);
 	}
 
-
-
+	public Account createAccount(Account account) {
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		return userRepository.save(account);
+	}
 }
