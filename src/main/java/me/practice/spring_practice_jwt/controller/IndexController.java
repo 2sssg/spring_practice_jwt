@@ -1,12 +1,21 @@
 package me.practice.spring_practice_jwt.controller;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import me.practice.spring_practice_jwt.dto.user.AccountJoinReqDto;
+import me.practice.spring_practice_jwt.model.Account;
+import me.practice.spring_practice_jwt.services.AccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@Slf4j
+@RequiredArgsConstructor
 public class IndexController {
 
+	private final AccountService userService;
 
 	/**
 	 * 인덱스 페이지 리턴하는 리스너
@@ -45,9 +54,10 @@ public class IndexController {
 		return "join";
 	}
 
-	@GetMapping("/joinProc")
-	public @ResponseBody String joinProc() {
-		return "회원가입 완료!";
+	@PostMapping("/create-account")
+	public @ResponseBody String userCreate(AccountJoinReqDto userJoinReqDto) {
+		log.info(userJoinReqDto.toString());
+		Account account = userService.createUser(userJoinReqDto);
+		return account.toString();
 	}
-
 }
