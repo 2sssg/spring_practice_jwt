@@ -57,7 +57,7 @@ public class IndexController {
 	@PostMapping("/create-account")
 	public @ResponseBody String userCreate(AccountJoinReqDto userJoinReqDto) {
 		log.info(userJoinReqDto.toString());
-		Account account = userService.createUser(userJoinReqDto);
-		return account.toString();
+//		return userService.createUser(userJoinReqDto).toString();
+		return "redirect:/login";
 	}
 }

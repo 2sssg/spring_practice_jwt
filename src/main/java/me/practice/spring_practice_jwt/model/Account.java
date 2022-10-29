@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import me.practice.spring_practice_jwt.enums.Role;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter @Setter
+@ToString
 public class Account {
 
 	@Id @GeneratedValue

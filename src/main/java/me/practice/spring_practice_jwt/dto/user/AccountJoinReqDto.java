@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 @ToString
@@ -16,4 +17,8 @@ public class AccountJoinReqDto {
 
 	private String email;
 
+	public AccountJoinReqDto encodePassword(PasswordEncoder passwordEncoder) {
+		this.password = passwordEncoder.encode(this.password);
+		return this;
+	}
 }
