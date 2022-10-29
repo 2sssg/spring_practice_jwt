@@ -15,6 +15,23 @@ spring:
     deserialization:
       fail-on-unknown-properties : true
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 62101851974-a0h2cac880lj2nctm08gnm6s4rbru516.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+          facebook:
+            client-id: 804885737295372
+            client-secret: 28ac75f1440b3d1eef55df1b4e5608d0
+            scope:
+              - email
+              - public_profile
+
 
 logging:
   level:
@@ -29,3 +46,4 @@ my-app:
   manager-username: manager
   user-username: user
   email: temp@temp.temp
+

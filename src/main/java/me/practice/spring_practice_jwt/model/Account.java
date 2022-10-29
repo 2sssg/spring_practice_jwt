@@ -35,4 +35,9 @@ public class Account {
 
 	@CreationTimestamp
 	private Timestamp createDate;
+
+	private String provider;
+
+	private String providerId;
+
 }
