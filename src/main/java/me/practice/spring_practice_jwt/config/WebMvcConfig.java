@@ -1,2 +1,19 @@
-package me.practice.spring_practice_jwt.config;public class WebMvcConfig {
+package me.practice.spring_practice_jwt.config;
+
+import org.springframework.boot.web.servlet.view.MustacheViewResolver;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		MustacheViewResolver mustacheViewResolver = new MustacheViewResolver();
+		mustacheViewResolver.setCharset("UTF-8");
+		mustacheViewResolver.setCharset("text/html; charset=UTF-8");
+		mustacheViewResolver.setCharset("classpath:/templates/");
+		mustacheViewResolver.setCharset(".html");
+	}
 }
